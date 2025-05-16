@@ -29,12 +29,8 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Build Docker image
-      run: docker build -t luma-tests .
-
-    - name: Run tests in Docker container
-      run: docker run --network host luma-tests
-      continue-on-error: true
+    - name: Run tests
+      run: mvn test
 
     - name: Set job status
       if: ${{ failure() }}

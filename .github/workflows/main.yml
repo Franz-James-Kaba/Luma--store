@@ -1,4 +1,4 @@
-name: Run Selenium Tests
+name: Run Luma Selenium Tests
 
 on:
   push:

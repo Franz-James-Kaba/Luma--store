@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.UUID;
 
 public class RegisterPage {
     private final WebDriver driver;
@@ -23,17 +24,20 @@ public class RegisterPage {
         this.driver = driver;
     }
 
-    public void fillForm(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FirstName));
-        driver.findElement(FirstName).sendKeys("John1");
-        driver.findElement(LastName).sendKeys("Doe");
-        driver.findElement(Email).sendKeys("controlled.gecko.wnmzv@letterprotect.com");
-        driver.findElement(Password).sendKeys("P@ssw0rd123");
-        driver.findElement(ConfirmPassword).sendKeys("P@ssw0rd123");
-        driver.findElement(CreateAccountButton).click();
+   public void fillForm(){
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(FirstName));
 
-    }
+    String email = "controlledy" + UUID.randomUUID().toString().substring(0, 8) + "@letterprotect.com";
+
+    driver.findElement(FirstName).sendKeys("John1");
+    driver.findElement(LastName).sendKeys("Doe");
+    driver.findElement(Email).sendKeys(email);
+    driver.findElement(Password).sendKeys("P@ssw0rd123");
+    driver.findElement(ConfirmPassword).sendKeys("P@ssw0rd123");
+    driver.findElement(CreateAccountButton).click();
+}
+
     public String successChecker() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement notificationElement = wait.until(

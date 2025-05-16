@@ -65,7 +65,6 @@ public class HomePage {
         return Url;
     }
     public void clickCartButton() {
-        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         try {
             Thread.sleep(5000);
         } catch (Exception e) {

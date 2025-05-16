@@ -21,7 +21,7 @@ public class Setup {
 
     @BeforeAll
     public static void setUp() {
-        // Setup Chrome options for Docker/headless compatibility
+        
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new"); // Use 'new' for Chrome 109+
         options.addArguments("--disable-gpu");

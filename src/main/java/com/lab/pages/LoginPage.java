@@ -31,9 +31,13 @@ public class LoginPage {
     }
 
     public String getWelcomeText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        try{
+            Thread.sleep(7000); // Wait for 7 seconds to ensure the welcome text is loaded
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         wait.until(ExpectedConditions.visibilityOfElementLocated(welcomeText));
-        
+
         String text = driver.findElement(welcomeText).getText();
         return text;
     }

@@ -29,16 +29,18 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Run tests
+    - name: Run tests (but don’t fail job)
+      id: run_tests
       run: mvn test
+      continue-on-error: true
 
     - name: Set job status
-      if: ${{ failure() }}
-      run: echo "STATUS=FAILURE" >> $GITHUB_ENV
-
-    - name: Set job status
-      if: ${{ success() }}
-      run: echo "STATUS=SUCCESS" >> $GITHUB_ENV
+      run: |
+        if [ "${{ steps.run_tests.outcome }}" == "success" ]; then
+          echo "STATUS=SUCCESS" >> $GITHUB_ENV
+        else
+          echo "STATUS=FAILURE" >> $GITHUB_ENV
+        fi
 
     - name: Send Email Notification
       uses: dawidd6/action-send-mail@v3
